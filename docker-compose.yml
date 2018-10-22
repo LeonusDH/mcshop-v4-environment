@@ -1,0 +1,63 @@
+version: "3.1"
+networks:
+  mc-shop-network:
+    external: true
+services:
+    mariadb:
+      image: mariadb:10.1
+      container_name: mc_shop_mariadb
+      working_dir: /application
+      volumes:
+      - ./db_backup:/application
+      environment:
+      - MYSQL_ROOT_PASSWORD=mysql
+      - MYSQL_DATABASE=mc_shop
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=mysql
+      networks:
+      - mc-shop-network
+      ports:
+      - "3307:3306"
+
+    nginx:
+      image: nginx:alpine
+      container_name: mc_shop_nginx
+      working_dir: /application
+      volumes:
+      - ./project:/application
+      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      networks:
+      - mc-shop-network
+      ports:
+      - "80:80"
+
+    minecraft:
+      build:
+        context: ./docker/minecraft
+        dockerfile: ./Dockerfile
+      container_name: mc_shop_minecraft
+      working_dir: /application
+      depends_on:
+      - mariadb
+      - app
+      networks:
+      - mc-shop-network
+#      volumes:
+#      - ./minecraft/minecraft_launch_server:/minecraft_launch_server
+#      - ./minecraft/minecraft_server:/minecraft_server
+      ports:
+      - "7240:7240"
+      - "25565:25565"
+
+    app:
+      build: docker/app
+      container_name: mc_shop_app
+      working_dir: /application
+      depends_on:
+      - nginx
+      - mariadb
+      networks:
+      - mc-shop-network
+      volumes:
+      - ./project:/application
+      - ./docker/app/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
