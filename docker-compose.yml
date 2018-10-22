@@ -42,9 +42,9 @@ services:
       - app
       networks:
       - mc-shop-network
-#      volumes:
-#      - ./minecraft/minecraft_launch_server:/minecraft_launch_server
-#      - ./minecraft/minecraft_server:/minecraft_server
+      volumes:
+      - ./minecraft/minecraft_launch_server:/minecraft_launch_server
+      - ./minecraft/minecraft_server:/minecraft_server
       ports:
       - "7240:7240"
       - "25565:25565"
