@@ -1,5 +1,4 @@
 project/
-!project/.gitkeep
 .idea/
 minecraft/minecraft_launch_server/libraries
 minecraft/minecraft_launch_server/profiles
@@ -26,3 +25,4 @@ minecraft/minecraft_server/server.properties
 minecraft/minecraft_server/spigot.yml
 minecraft/minecraft_server/usercache.json
 minecraft/minecraft_server/whitelist.json
+.env
