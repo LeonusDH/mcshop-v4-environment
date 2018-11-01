@@ -3,7 +3,7 @@
 
 Последовательность команд для разворачивания web-проекта:
 ```bash
-git clone https://gitlab.com/jmd-team/mcshop-v4-environment.git application
+git clone https://github.com/mops1k/mcshop-v4-environment.git application
 cd application/
 cp .env.dist .env
 ```
@@ -12,7 +12,7 @@ cp .env.dist .env
 docker-compose up -d git
 docker-compose up -d nginx
 ```
-Далее следовать инструкции из https://gitlab.com/jmd-team/mcshop-v4
+Далее следовать инструкции из https://github.com/mops1k/mcshop-v4.git кроме шага клонирования проекта. Сам проект уже должен находиться в папке project, которая автоматически создалась при выполнении первых команд.
 
 Для выполнения команд из инструкции выполнять:
 ```cmd

@@ -70,6 +70,6 @@ services:
   git:
     container_name: mc_shop_git
     image: alpine/git:1.0.4
-    command: -C /application clone https://gitlab.com/jmd-team/McShop-v4.git .
+    command: -C /application clone https://github.com/mops1k/mcshop-v4.git .
     volumes:
     - ./project:/application:rw
